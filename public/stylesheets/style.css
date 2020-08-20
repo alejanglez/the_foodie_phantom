@@ -6,16 +6,21 @@
 
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px "Indie Flower", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
+  font-size: 25px;
 }
 
 .navbar {
   margin-bottom: 40px;
-  padding: 20px 40px;
+  padding: 10px 20px;
+}
+
+.logo-nav{
+  padding: 5px;
 }
 
 .btn-login {
@@ -29,3 +34,5 @@ button.close {
 .error {
   margin-top: 20px;
 }
+
+/*SIGNUP*/
