@@ -1,10 +1,11 @@
 # Project Name
 
-The Phantom Cook
+The Foodie Phantom
 
-# Description
+# Description - MVP
 
 Eat well close to your door.
+Second module project: mongodb, mongoose, express, node, npm, hbs
 
 User Stories
 404 - As a user I want to see a nice 404 page when I go to a page that doesn’t exist so that I know it was my fault
@@ -23,106 +24,27 @@ menu list - As a user I want to see all the events available so that I can choos
 menu create - As a user I want to create an event so that I can invite others to attend
 menu detail - As a user I want to see the event details and attendee list of one event so that I can decide if I want to attend
 menu confirm - As a user I want to be able to attend to event so that the organizers can count me in
-Backlog
-List of other features outside of the MVPs scope
 
 User profile:
-
 see my profile
 upload my profile picture
-see other users profile
-list of events created by the user
-list events the user is attending
+list of Orders confirmed
+list of Orders created by the user
+
+Cook profile:
+see my profile
+upload my profile picture
+list of Orders confirmed
+list of Menus created by the cook
+
+# Backlog
+
+Delivery, Payment,rating and comments
 Geo Location:
+add geolocation to cooks when creating
+show cooks & menus in a map in event detail page
 
-add geolocation to events when creating
-show event in a map in event detail page
-show all events in a map in the event list page
-Homepage
-
-...
-ROUTES:
-GET /
-
-renders the homepage
-GET /auth/signup
-
-redirects to / if user logged in
-renders the signup form (with flash msg)
-POST /auth/signup
-
-redirects to / if user logged in
-body:
-username
-email
-password
-GET /auth/login
-
-redirects to / if user logged in
-renders the login form (with flash msg)
-POST /auth/login
-
-redirects to / if user logged in
-body:
-username
-password
-POST /auth/logout
-
-body: (empty)
-GET /events
-
-renders the event list + the create form
-POST /events/create
-
-redirects to / if user is anonymous
-body:
-name
-date
-location
-description
-GET /events/:id
-
-renders the event detail page
-includes the list of attendees
-attend button if user not attending yet
-POST /events/:id/attend
-
-redirects to / if user is anonymous
-body: (empty - the user is already stored in the session)
-Models
-User model
-
-username: String
-password: String
-Event model
-
-owner: ObjectId<User>
-name: String
-description: String
-date: Date
-location: String
-attendees: [ObjectId<User>]
-Links
-Trello
-Link to your trello board or picture of your physical board
-
-Git
-The url to your repository and to your deployed project
-
-Repository Link
-
-Deploy Link
-
-Slides
-The url to your presentation slides
-
-Slides Link
-
-# the_foodie_phantom
-
-Second module project: mongodb, mongoose, express, node, npm, hbs
-
-# struture
+# ROUTES - STRUCTURE
 
 1 Bin
 ├── bin - www
@@ -130,6 +52,7 @@ Second module project: mongodb, mongoose, express, node, npm, hbs
 ├── user
 ├── cooks
 ├── menu
+├── orders
 3 Configs
 ├── db.config.js
 ├── session.config.js
@@ -137,9 +60,9 @@ Second module project: mongodb, mongoose, express, node, npm, hbs
 4 -Routes
 ├── auth.routes.js
 ├── index.js
-├── orders
-│ ├── menu.js
-│ └── confirmed.order.js
+├── menu.js
+├── orders.js
+├── confirmed.order.js
 
 5 views
 ├── userAuth
@@ -168,3 +91,66 @@ Second module project: mongodb, mongoose, express, node, npm, hbs
 8 pacage.json
 9 readme.md
 
+# models
+
+User model
+new Schema ({
+\_id: ,
+username: String, required: true,
+email: String, required: true,
+password: String, minlength: 6, maxlength: 12,
+fullName: String, required: true, maxlength: 20,
+address: String, required: true, maxlength: 30,
+phone: String, required: true, minlength: 9, maxlength: 9,
+})
+
+Cook model
+new Schema ({
+\_id: ,
+username: String, required: true,
+email: String, required: true,
+password: String, minlength: 6, maxlength: 12,
+fullName: String, required: true, maxlength: 20,
+address: String, required: true, maxlength: 30,
+phone: String, required: true, minlength: 9, maxlength: 9,
+Number porefession: String, required: true, minlength: 9, maxlength: 9,
+})
+
+Menu model
+new Schema ({
+\_id: ,
+menuOwnerRef: cook.\_id,
+title: String, required: true,
+Desciption: String, required: true,
+Image: String Url, required: true,
+price: Number, required: true,
+isAvailable: Boolean, \*\*
+})
+
+order model
+new Schema ({
+\_id: ,
+menuOwnerRef: cook.\_id,
+menuRef: menu.\_id,
+userRef: user.\_id,
+dayOrdered: Number, required: true,
+Quantity: Number, required: true,
+})
+
+## Links
+
+[Trello Link](https://trello.com/b/Hu1J0K0k/foodie-phantom)
+
+### Git
+
+[Repository Link](https://github.com/alejanglez)
+
+[Deploy Link]()
+
+### Slides
+
+[Google Slides Link]()
+
+### Frames
+
+[Repository Link](https://marvelapp.com/prototype/4f55igj)
