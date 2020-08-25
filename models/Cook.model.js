@@ -2,12 +2,12 @@
 
 const { Schema, model } = require('mongoose');
 
-const userSchema = new Schema(
+const cookSchema = new Schema(
   {
-    username: {
+    cookname: {
       type: String,
       trim: true,
-      required: [true, 'Username is required.'],
+      required: [true, 'Cookname is required.'],
       unique: true
     },
     
@@ -21,4 +21,4 @@ const userSchema = new Schema(
   }
 );
 
-module.exports = model('User', userSchema);
+module.exports = model('cook', cookSchema);

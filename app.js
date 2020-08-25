@@ -42,9 +42,11 @@ app.locals.message = "Don't envy your neighbor's food, ask for Them!!";
 
 const index = require("./routes/index.routes");
 const authRouter = require("./routes/auth.routes");
+const authCookRouter = require("./routes/authCook.routes");
 
 app.use("/", index);
 app.use("/", authRouter);
+app.use("/", authCookRouter);
 
 app.use("/movies", require("./routes/movie.routes"));
 

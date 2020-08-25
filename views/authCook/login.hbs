@@ -1,0 +1,18 @@
+{{!-- views/auth/login.hbs --}}
+
+<h2>COOK Log In</h2>
+
+<form action="/loginCook" method="POST">
+  <div class="form-group">
+    <label for="cookname">Cookname</label>
+    <input type="text" class="form-control" id="cookname" name="ookname" placeholder="Enter cookname" required>
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+  </div>
+  <button type="submit" class="btn btn-primary">Login to account</button>
+  {{#if errorMessage}}
+    <p class="error">{{errorMessage}}</p>
+  {{/if}}
+</form> 
