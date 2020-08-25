@@ -14,4 +14,6 @@ router.get("/private", (req, res, next) => {
 	res.render("users/private", { userInSession: req.session.currentUser })
 });
 
+router.get('/menu', (req, res, next) => res.render('menu/menu-layout'));
+
 module.exports = router;

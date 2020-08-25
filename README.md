@@ -100,6 +100,7 @@ username: String, required: true,
 email: String, required: true,
 password: String, minlength: 6, maxlength: 12,
 fullName: String, required: true, maxlength: 20,
+birthday: Date,
 address: String, required: true, maxlength: 30,
 phone: String, required: true, minlength: 9, maxlength: 9,
 })
@@ -112,8 +113,9 @@ email: String, required: true,
 password: String, minlength: 6, maxlength: 12,
 fullName: String, required: true, maxlength: 20,
 address: String, required: true, maxlength: 30,
+zipcode: Number, required: true, maxlength: 30,
 phone: String, required: true, minlength: 9, maxlength: 9,
-Number porefession: String, required: true, minlength: 9, maxlength: 9,
+Number porffession: String, required: true, minlength: 9, maxlength: 9,
 })
 
 Menu model

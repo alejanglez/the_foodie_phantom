@@ -38,12 +38,15 @@ app.use(express.urlencoded({ extended: true }));
 
 // default value for title local
 app.locals.title = "The Foodie Phantom";
-app.locals.message ="Don't envy your neighbor's food, ask for Them!!"
+app.locals.message = "Don't envy your neighbor's food, ask for Them!!";
 
 const index = require("./routes/index.routes");
 const authRouter = require("./routes/auth.routes");
+
 app.use("/", index);
 app.use("/", authRouter);
+
+app.use("/movies", require("./routes/movie.routes"));
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => next(createError(404)));

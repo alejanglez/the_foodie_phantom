@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/basicAuth';
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/movie-project';
 
 mongoose
   .connect(MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useCreateIndex: true
+    useCreateIndex: true,
   })
   .then(() => console.log(`Successfully connected to the database ${MONGODB_URI}`))
   .catch(error => {
