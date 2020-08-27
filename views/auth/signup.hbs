@@ -6,13 +6,33 @@
     <input type="text" class="form-control" id="username" name="username" placeholder="Enter username" required>
   </div>
   <div class="form-group">
-    <label for="password">Password</label>
-    <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+    <label for="password">Email</label>
+    <input type="password" class="form-control" id="email" name="email" placeholder="Enter email" required>
   </div>
+<div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" required>
+  </div>
+
+  <div class="form-group">
+    <label for="password">Date of birth</label>
+    <input type="password" class="form-control" id="Date" name="Date" placeholder="Enter date of birth" required>
+  </div>
+
+  <div class="form-group">
+    <label for="password">Postcode</label>
+    <input type="password" class="form-control" id="address" name="address" placeholder="Enter postcode" required>
+  </div>
+
+<div class="form-group">
+    <label for="password">Phone</label>
+    <input type="password" class="form-control" id="Phone number" name="Phone number" placeholder="Enter phone number" required>
+  </div>
+
   <button type="submit" class="btn btn-primary">Create account</button>
   {{#if errorMessage}}
   <div class="alert alert-danger error" role="alert">
     {{errorMessage}}
   </div>
   {{/if}}
-</form> 
+</form>
