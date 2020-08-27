@@ -9,8 +9,8 @@
 
 <body>
   <nav class="navbar navbar-expand-sm navbar-light bg-light">
-    {{!-- <a class="navbar-brand" href="/"><img class="logo-nav" src="./images/Frame2.png" width="80" height="80"
-        alt="Logo"></a> --}}
+    <a class="navbar-brand" href="/"><img class="logo-nav" src="./images/Frame2.png" width="80" height="80"
+        alt="Logo"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -37,9 +37,9 @@
         <button type="submit" class="btn btn-secondary">Logout</button>
       </form>
       <a href="/loginCook" class="btn btn-outline-secondary btn-login" role="button" aria-pressed="true">COOK Login</a>
-      <form id="logout-form" action="/logout" method="POST">
+      {{!-- <form id="logout-form" action="/logoutCook" method="POST">
         <button type="submit" class="btn btn-secondary">Cook Logout</button>
-      </form>
+      </form> --}}
   </nav>
 
   <div class="container">

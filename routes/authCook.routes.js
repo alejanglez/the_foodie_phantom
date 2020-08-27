@@ -2,9 +2,8 @@ const { Router } = require("express");
 const router = new Router();
 const bcryptjs = require("bcryptjs");
 const saltRounds = 10;
-const User = require("../models/Cook.model");
+const Cook = require("../models/Cook.model");
 const mongoose = require("mongoose");
-
 
 ///////////////////////////SIGNUP///////////////////////////
 
@@ -16,10 +15,10 @@ router.get("/signupCook", (req, res) => {
 //post route with inputs from form.
 router.post("/signupCook", (req, res, next) => {
   //destructure input data
-  const { cookname, password } = req.body;
+  const { cookname, password2 } = req.body;
 
   //check if both fields are completed
-  if (!cookname || !password) {
+  if (!cookname || !password2) {
     res.render("authCook/signup", { errorMessage: "Both field are mandatory" });
 
     //else => stop code with empty return
@@ -29,7 +28,7 @@ router.post("/signupCook", (req, res, next) => {
   //Checks that a password has a minimum of 6 characters, at least 1 uppercase letter, 1 lowercase letter, and 1 number with no spaces.
   const regex = /^((?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9]).{6,})\S$/;
 
-  if (!regex.test(password)) {
+  if (!regex.test(password2)) {
     res.status(500).render("authCook/signup", {
       errorMessage:
         "Password must have a minimum of 6 characters, at least 1 uppercase letter, 1 lowercase letter, and 1 number with no spaces.",
@@ -42,11 +41,11 @@ router.post("/signupCook", (req, res, next) => {
   //encrypt password
   bcryptjs
     .genSalt(saltRounds)
-    .then((salt) => bcryptjs.hash(password, salt))
-    .then((hashedPassword) => {
-      return User.create({
+    .then((salt) => bcryptjs.hash(password2, salt))
+    .then((hashedPassword2) => {
+      return Cook.create({
         cookname,
-        passwordHash: hashedPassword,
+        passwordHash2: hashedPassword2,
       });
     })
     .then((cookFromDb) => {
@@ -56,7 +55,9 @@ router.post("/signupCook", (req, res, next) => {
     })
     .catch((error) => {
       if (error instanceof mongoose.Error.ValidationError) {
-        res.status(500).render("authCook/signup", { errorMessage: error.message });
+        res
+          .status(500)
+          .render("authCook/signup", { errorMessage: error.message });
       } else if (error.code === 11000) {
         res.status(500).render("authCook/signup", {
           errorMessage:
@@ -73,25 +74,25 @@ router.post("/signupCook", (req, res, next) => {
 router.get("/loginCook", (req, res) => res.render("authCook/login"));
 
 router.post("/loginCook", (req, res, next) => {
-  const { cookname, password } = req.body;
+  const { cookname, password2 } = req.body;
 
-  if (cookname === "" || password === "") {
+  if (cookname === "" || password2 === "") {
     res.render("authCook/login", {
       errorMessage: "Please enter both, username and password to login.",
     });
     return;
   }
 
-  User.findOne({ cookname })
-    .then((user) => {
-      if (!user) {
+  Cook.findOne({ cookname })
+    .then((cook) => {
+      if (!cook) {
         res.render("authCook/login", {
           errorMessage: "Username is not registered. Try with other email.",
         });
         return;
-      } else if (bcryptjs.compareSync(password, user.passwordHash)) {
+      } else if (bcryptjs.compareSync(password2, cook.passwordHash2)) {
         //******* SAVE THE USER IN THE SESSION ********//
-        req.session.currentUser = user;
+        req.session.currentCook = cook;
         console.log("¨REDIRECT");
         res.redirect("/cookProfile");
       } else {
@@ -103,18 +104,18 @@ router.post("/loginCook", (req, res, next) => {
 
 ///////////////////////////// LOGOUT ///////////////////////////////////
 
-router.post("/logout", (req, res) => {
+router.post("/logoutCook", (req, res) => {
   req.session.destroy();
   res.redirect("/");
 });
 
-router.get("/userProfile", (req, res) => {
+router.get("/cookProfile", (req, res) => {
   console.log(req.session);
-  if (!req.session.currentUser) {
-    res.redirect("/signup");
+  if (!req.session.currentCook) {
+    res.redirect("/signupCook");
   } else {
-    res.render("users/user-profile", {
-      userInSession: req.session.currentUser,
+    res.render("cooks/cook-profile", {
+      cookInSession: req.session.currentCook,
     });
   }
 });

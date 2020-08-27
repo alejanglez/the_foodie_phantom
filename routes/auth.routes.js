@@ -15,7 +15,16 @@ router.get("/signup", (req, res) => {
 //post route with inputs from form.
 router.post("/signup", (req, res, next) => {
   //destructure input data
-  const { username, password } = req.body;
+  const {
+    username,
+    email,
+    password,
+    fullname,
+    birthday,
+    zipcode,
+    address,
+    phone,
+  } = req.body;
 
   //check if both fields are completed
   if (!username || !password) {
@@ -45,7 +54,13 @@ router.post("/signup", (req, res, next) => {
     .then((hashedPassword) => {
       return User.create({
         username,
+        email,
         passwordHash: hashedPassword,
+        fullname,
+        birthday,
+        zipcode,
+        address,
+        phone,
       });
     })
     .then((userFromDb) => {

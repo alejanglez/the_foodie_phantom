@@ -101,6 +101,7 @@ email: String, required: true,
 password: String, minlength: 6, maxlength: 12,
 fullName: String, required: true, maxlength: 20,
 birthday: Date,
+zipcode: Number, required: true, maxlength: 30,
 address: String, required: true, maxlength: 30,
 phone: String, required: true, minlength: 9, maxlength: 9,
 })
@@ -112,10 +113,15 @@ username: String, required: true,
 email: String, required: true,
 password: String, minlength: 6, maxlength: 12,
 fullName: String, required: true, maxlength: 20,
-address: String, required: true, maxlength: 30,
+birthday: Date,
 zipcode: Number, required: true, maxlength: 30,
+address: String, required: true, maxlength: 30,
 phone: String, required: true, minlength: 9, maxlength: 9,
-Number porffession: String, required: true, minlength: 9, maxlength: 9,
+motivation: String, required: true,
+professional certification{ yes, no}
+foodhHandlingNumber: Number, required: true, minlength: 9, maxlength: 9,
+kitchenNumber: Number, required: true, minlength: 9, maxlength: 9,
+Status:option{ green, red}
 })
 
 Menu model

@@ -11,7 +11,7 @@ const cookSchema = new Schema(
       unique: true
     },
     
-    passwordHash: {
+    passwordHash2: {
       type: String,
       required: [true, 'Password is required.']
     }
