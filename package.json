@@ -13,7 +13,7 @@
     "cloudinary": "^1.21.0",
     "connect-mongo": "^3.2.0",
     "cookie-parser": "^1.4.3",
-    "dotenv": "^6.0.0",
+    "dotenv": "^6.2.0",
     "express": "^4.16.3",
     "express-session": "^1.17.1",
     "hbs": "^4.0.1",
@@ -25,5 +25,17 @@
   },
   "devDependencies": {
     "nodemon": "^1.12.1"
-  }
+  },
+  "description": "The Foodie Phantom",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alejanglez/the_foodie_phantom.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alejanglez/the_foodie_phantom/issues"
+  },
+  "homepage": "https://github.com/alejanglez/the_foodie_phantom#readme"
 }
