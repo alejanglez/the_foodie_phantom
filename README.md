@@ -127,12 +127,12 @@ Status:option{ green, red}
 Menu model
 new Schema ({
 \_id: ,
+menuOwnerRef: [{ type: Schema.Types.ObjectId, ref: "Cook" }],
 menuOwnerRef: cook.\_id,
 title: String, required: true,
 Desciption: String, required: true,
 Image: String Url, required: true,
 price: Number, required: true,
-isAvailable: Boolean, \*\*
 })
 
 order model

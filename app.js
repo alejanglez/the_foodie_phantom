@@ -48,31 +48,7 @@ app.use("/", index);
 app.use("/", authRouter);
 app.use("/", authCookRouter);
 
-app.use("/movies", require("./routes/movie.routes"));
-
-/* GET Explore page */
-const getAllSpots = (req, res) => {
-  Spot.find()
-    .populate("author")
-    // .sort({ createdAt: -1 })
-    // .limit(10)
-    .then((spots) => {
-      res.render("explore", { spots: spots, javascript: "explore" });
-    })
-    .catch((err) => console.log(`error while getting the spots page ${err}`));
-};
-/* GET Explore page */
-router.get("/explore", getAllSpots);
-router.get("/explore/search", (req, res, next) => {
-  Spot.find()
-    .populate("author")
-    .then((spots) => {
-      res.json(spots);
-    })
-    .catch((err) => console.log(`error while getting the spots page ${err}`));
-});
-
-//res.json
+app.use("/menus", require("./routes/menu.routes"));
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => next(createError(404)));
