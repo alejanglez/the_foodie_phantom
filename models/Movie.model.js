@@ -12,4 +12,14 @@ const movieSchema = new Schema(
   }
 );
 
+  //  products: [
+  //   {
+  //   name: String,
+  //   imageUrl: String,
+  //   category: String,
+  //   price: Number,
+  //   quantity: Number
+  // }
+  // ],
+
 module.exports = model('Movie', movieSchema);
