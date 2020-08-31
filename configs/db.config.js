@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/movie-project';
 
 mongoose
-  .connect(MONGODB_URI, {
+  .connect(`${process.env.MONGODB_URI}`
+    , {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
@@ -12,4 +13,5 @@ mongoose
     console.error(`An error ocurred trying to connect to the database ${MONGODB_URI}: `, error);
     process.exit(1);
   });
+
 

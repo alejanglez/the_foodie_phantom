@@ -6,8 +6,52 @@
     <input type="text" class="form-control" id="cookname" name="cookname" placeholder="Enter cookname" required>
   </div>
   <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" class="form-control" id="email" name="email" minlength="6" value="youremail@gmail.com" placeholder="Email" required>
+  </div>
+  <div class="form-group">
     <label for="password">Password</label>
-    <input type="password" class="form-control" id="password" name="password2" placeholder="Password" required>
+    <input type="password" class="form-control" id="password" name="password2" value="xxxxxxx" maxlength="20" placeholder="Password" required>
+  </div>
+  <div class="form-group">
+    <label for="fullName">FullName</label>
+    <input type="fullName" class="form-control" id="fullName" name="fullName" value="Ironhack" placeholder="FullName" required>
+  </div>
+  <div class="form-group">
+    <label for="birthay">Birthday</label>
+    <input type="birthday" class="form-control" id="birthday" name="birthday"value="2020-10-02" maxlength="30" placeholder="Birthday" required>
+  </div>
+  <div class="form-group">
+    <label for="zipcode">Zipcode</label>
+    <input type="zipcode" class="form-control" id="zipcode" name="zipcode" value="28220" maxlength="15" placeholder="Zipcode" required>
+  </div>
+  <div class="form-group">
+    <label for="address">Address</label>
+    <input type="address" class="form-control" id="address" name="address" value="Avenida España" maxlength="15" placeholder="Address" required>
+  </div>
+  <div class="form-group">
+    <label for="phone">Phone</label>
+    <input type="phone" class="form-control" id="phone" name="phone" value="3400" minlength="9" maxlength="9" placeholder="Phone" required>
+  </div>
+  <div class="form-group">
+    <label for="zipcode">Motivation</label>
+    <input type="motivation" class="form-control" id="motivation" name="motivation" placeholder="Motivation" required>
+  </div>
+  <div class="form-group">
+    <label for="certification">Certification</label>
+    <input type="certification" class="form-control" id="certification" name="certification" value="Yes/Non" placeholder="Certification" required>
+  </div>
+  <div class="form-group">
+    <label for="foodhHandlingNumber">FoodhHandling Number</label>
+    <input type="foodhHandlingNumber" class="form-control" id="foodhHandlingNumber" name="foodhHandlingNumber" value="0000" minlength="9" maxlength="9" placeholder="FoodhHandlingNumber" required>
+  </div>
+  <div class="form-group">
+    <label for="kitchenNumber">kitchen Number</label>
+    <input type="kitchenNumber" class="form-control" id="kitchenNumber" name="kitchenNumber" value="0000" minlength="9" maxlength="9" placeholder="kitchen Number" required>
+  </div>
+  <div class="form-group">
+    <label for="status">Status</label>
+    <input type="status" class="form-control" id="status" name="status" value="Available/not available"  placeholder="Status" required>
   </div>
   <button type="submit" class="btn btn-primary">Create account</button>
   {{#if errorMessage}}
