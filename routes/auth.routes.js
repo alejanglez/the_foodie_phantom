@@ -5,6 +5,7 @@ const saltRounds = 10;
 const User = require("../models/User.model");
 const mongoose = require("mongoose");
 
+
 ///////////////////////////SIGNUP///////////////////////////
 
 //get route and display signup form.
@@ -15,16 +16,7 @@ router.get("/signup", (req, res) => {
 //post route with inputs from form.
 router.post("/signup", (req, res, next) => {
   //destructure input data
-  const {
-    username,
-    email,
-    password,
-    fullname,
-    birthday,
-    zipcode,
-    address,
-    phone,
-  } = req.body;
+  const { username, email, password, fullname, birthday, zipcode, address, phone,} = req.body;
 
   //check if both fields are completed
   if (!username || !password) {
@@ -63,10 +55,12 @@ router.post("/signup", (req, res, next) => {
         phone,
       });
     })
+
     .then((userFromDb) => {
       console.log("Newly created user is: ", userFromDb);
-      req.session.currentUser = userFromDb;
-      res.redirect("/userProfile");
+      //req.session.currentUser = userFromDb;
+      //res.redirect("/userProfile");
+      res.redirect("/login");
     })
     .catch((error) => {
       if (error instanceof mongoose.Error.ValidationError) {
@@ -74,7 +68,7 @@ router.post("/signup", (req, res, next) => {
       } else if (error.code === 11000) {
         res.status(500).render("auth/signup", {
           errorMessage:
-            "Username and email need to be unique. Either username or email is already used.",
+          "Username and email need to be unique. Either username or email is already used.",
         });
       } else {
         next(error);

@@ -1,32 +1,38 @@
 <h2>USER SING UP</h2>
 <form action='/signup' method='POST'>
+
   <div class="form-group"></div>
   <label for=''>Username</label>
-  <input type='username' class="form-control" value="Username" name='username' required>
+  <input type='username' class="form-control"  name='username' required>
   <div class="form-group"></div>
   <label for=''>Email</label>
-  <input type='email' class="form-control" minlength="6" value="youremail@gmail.com" name='email' required>
+  <input type='email' class="form-control" minlength="6"  name='email' required>
   <div class="form-group"></div>
   <label for=''>Password</label>
-  <input type='password' class="form-control" value="xxxxxxx" maxlength="20" name='password' required>
+  <input type='password' class="form-control"  maxlength="20" name='password' required>
   <div class="form-group"></div>
   <label for=''>Fullname</label>
-  <input type='fullname' class="form-control" value="Alejandro" name='fullname' required>
+  <input type='fullname' class="form-control"  name='fullname' required>
   <div class="form-group"></div>
   <label for=''>Birthday</label>
-  <input type='birthday' class="form-control" value="2020-10-02" maxlength="30" name='birthday' required>
+  <input type='birthday' class="form-control"  maxlength="30" name='birthday' required>
   <div class="form-group"></div>
   <label for=''>Zipcode</label>
-  <input type='zipcode' class="form-control" value="28220" maxlength="15" name='zipcode' required>
+  <input type='zipcode' class="form-control" maxlength="15" name='zipcode' required>
   <div class="form-group"></div>
   <label for=''>Address</label>
-  <input type='address' class="form-control" value="Avenida España" maxlength="15" name='address' required>
+  <input type='address' class="form-control"  maxlength="15" name='address' required>
   <div class="form-group"></div>
   <label for=''>Phone</label>
-  <input type='phone' class="form-control" value="3400" minlength="9" maxlength="9" name='phone' required>
+  <input type='phone' class="form-control"  minlength="9" maxlength="9" name='phone' required>
   <div class="form-group"></div>
+
+
   <button type="submit" class="btn btn-primary">Create account</button>
+
 </form>
+
+
 </section {{#if errorMessage}} <div class="error">
 <p>{{errorMessage}}</p>
 </div>

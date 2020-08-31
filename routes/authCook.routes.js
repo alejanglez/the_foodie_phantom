@@ -15,7 +15,7 @@ router.get("/signupCook", (req, res) => {
 //post route with inputs from form.
 router.post("/signupCook", (req, res, next) => {
   //destructure input data
-  const { cookname, password2 } = req.body;
+  const { cookname, email, password2, fullName, birthday, zipcode, address, phone, motivation, certification, foodhHandlingNumber, kitchenNumber, status, } = req.body;
 
   //check if both fields are completed
   if (!cookname || !password2) {
@@ -45,13 +45,24 @@ router.post("/signupCook", (req, res, next) => {
     .then((hashedPassword2) => {
       return Cook.create({
         cookname,
+        email,
         passwordHash2: hashedPassword2,
+        fullName,
+        birthday,
+        zipcode,
+        address,
+        phone,
+        motivation,
+        certification,
+        foodhHandlingNumber,
+        kitchenNumber,
+        status,
       });
     })
     .then((cookFromDb) => {
       console.log("Newly created user is: ", cookFromDb);
-      req.session.currentCook = cookFromDb;
-      res.redirect("/cookProfile");
+      //req.session.currentCook = cookFromDb;
+      res.redirect("/loginCook");
     })
     .catch((error) => {
       if (error instanceof mongoose.Error.ValidationError) {
