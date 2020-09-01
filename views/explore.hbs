@@ -61,15 +61,19 @@
             </select>
             <button id="fetch-by-reg">Filter</button>
         </div>
-        <div id="cont">
+        <div id="container">
             {{#each cooks}}
+            
             <div class="card card-body">
                 <h4>Name: {{this.cookname}}</h4>
                 <p>Motivation: {{this.motivation}}</p>
                 <p>certification: {{this.certification}}</p>
-                <p><a href="" class="btn btn-primary">See more</a>
+                <p>region: {{this.region}}</p>
+                <p>status: {{this.status}}</p>
+                <p><a href="" class="btn btn-primary">COMPLETE MENU</a>
             </div>
             <hr>
+            
             {{/each}}
         </div>
     </div>

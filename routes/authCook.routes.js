@@ -15,7 +15,22 @@ router.get("/signupCook", (req, res) => {
 //post route with inputs from form.
 router.post("/signupCook", (req, res, next) => {
   //destructure input data
-  const { cookname, email, password2, fullName, birthday, zipcode, address, phone, motivation, certification, foodhHandlingNumber, kitchenNumber, status, } = req.body;
+  const {
+    cookname,
+    email,
+    password2,
+    fullName,
+    birthday,
+    zipcode,
+    address,
+    region,
+    phone,
+    motivation,
+    certification,
+    foodhHandlingNumber,
+    kitchenNumber,
+    status,
+  } = req.body;
 
   //check if both fields are completed
   if (!cookname || !password2) {
@@ -51,6 +66,7 @@ router.post("/signupCook", (req, res, next) => {
         birthday,
         zipcode,
         address,
+        region,
         phone,
         motivation,
         certification,

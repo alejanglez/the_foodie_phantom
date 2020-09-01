@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const { Schema, model } = mongoose;
-const movieSchema = new Schema(
+const menuSchema = new Schema(
   {
     menuOwnerRef:String,
     title: String,
@@ -12,7 +12,7 @@ const movieSchema = new Schema(
     timestamps: true
   }
 );
-module.exports = model('Movie', movieSchema);
+module.exports = model('Menu', menuSchema);
 
 // const { Schema, model } = require('mongoose');
 // const menuSchema = new Schema(
