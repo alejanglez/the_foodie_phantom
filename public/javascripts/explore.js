@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
         result.forEach((obj) => {
-          const { cookname, motivation, certification, region, status } = obj;
+          const { cookname, motivation, certification, region, status, _id } = obj;
 
           item += `
           <div class="card card-body">
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <p>description: ${certification}</p>
           <p>region: ${region}</p>
           <p>status: ${status}</p>
-          <p><a href="" class="btn btn-primary">See more</a>
+          <p><a href="/cooks/${_id}/menus" class="btn btn-primary">COMPLETE MENU</a>
         </div>
         <hr>`;
         });

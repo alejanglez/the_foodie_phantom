@@ -1,22 +1,11 @@
 const express = require("express");
 const router = express.Router();
-// ********* require Movie model in order to use it *********
+
+const Cook = require("../models/Cook.model");
 const Menu = require("../models/Menu.model");
-// ********* require fileUploader in order to use it *********
+
 const fileUploader = require("../configs/cloudinary.config");
-// ****************************************************************************************
-// GET route to display all the movies
-// ****************************************************************************************
-router.get("/", (req, res) => {
-  Menu.find()
-    .then((menusFromDB) => {
-      console.log(menusFromDB);
-      res.render("menu/menu-list", { menus: menusFromDB });
-    })
-    .catch((err) =>
-      console.log(`Error while getting the movies from the DB: ${err}`)
-    );
-});
+
 // ****************************************************************************************
 // GET route to display the form to create a new movie
 // ****************************************************************************************
@@ -29,7 +18,13 @@ router.post("/create", fileUploader.single("image"), (req, res) => {
   console.log("HIIIIIIIIIIII");
   const { title, description, price } = req.body;
   console.log("HELLOO", req.file);
-  Menu.create({ title, description, imageUrl: req.file.path, price })
+  Menu.create({
+    menuOwnerRef: req.session.currentCook._id,
+    title,
+    description,
+    imageUrl: req.file.path,
+    price,
+  })
     .then(() => res.redirect("/menus"))
     .catch((error) =>
       console.log(`Error while creating a new movie: ${error}`)
@@ -68,4 +63,32 @@ router.post("/:id/edit", fileUploader.single("image"), (req, res) => {
       console.log(`Error while updating a single movie: ${error}`)
     );
 });
+
+// ****************************************************************************************
+// GET route to display all the movies
+// ****************************************************************************************
+router.get("/", (req, res) => {
+  Menu.find({ menuOwnerRef: req.session.currentCook._id })
+    // { menuOwnerRef: { $eq: req.session.currentCook._id }
+    .populate("menuOwnerRef")
+    .then((menusFromDB) => {
+      console.log(menusFromDB);
+      res.render("menu/menu-list", { menus: menusFromDB });
+    })
+    .catch((err) =>
+      console.log(`Error while getting the movies from the DB: ${err}`)
+    );
+});
+
+//delete
+router.post("/:id/delete", (req, res, next) => {
+  const { id } = req.params;
+  Menu.findByIdAndDelete(id)
+    .then(() => res.redirect(`/menus`))
+    .catch((error) => {
+      console.log(`Error while deleting the selected menus: ${error}`);
+      next();
+    });
+});
+
 module.exports = router;

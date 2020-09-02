@@ -1,18 +1,18 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const { Schema, model } = mongoose;
 const menuSchema = new Schema(
   {
-    menuOwnerRef:String,
+    menuOwnerRef: { type: mongoose.ObjectId, ref: "Cook", required: true },
     title: String,
     description: String,
     imageUrl: String,
-    price: Number
+    price: Number,
   },
   {
-    timestamps: true
+    timestamps: true,
   }
 );
-module.exports = model('Menu', menuSchema);
+module.exports = model("Menu", menuSchema);
 
 // const { Schema, model } = require('mongoose');
 // const menuSchema = new Schema(
