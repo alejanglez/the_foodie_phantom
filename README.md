@@ -153,7 +153,7 @@ Quantity: Number, required: true,
 
 [Repository Link](https://github.com/alejanglez)
 
-[Deploy Link]()
+[Deploy Link](https://the-foodie-phantom.herokuapp.com/)
 
 ### Slides
 
