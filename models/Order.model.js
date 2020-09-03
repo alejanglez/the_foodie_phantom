@@ -2,38 +2,24 @@ const mongoose = require("mongoose");
 const { Schema, model } = mongoose;
 
 const chartSchema = new Schema(
+
   {
-    // userId: {
-    userId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User.model",
-    },
-    ordered: {
-      type: Boolean,
-      enum: [true, false],
-      default: false,
-    },
-    purchaseDate: {
-      type: Date,
-      default: Date.now,
-    },
-    // Array of products
-    order: [
-      {
-        movieId: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "Movie.model",
-        },
-        quantity: {
-          type: Number,
-          default: 1,
-        },
-      },
-    ],
+    menuOrderedRef: {type: mongoose.ObjectId, ref: "Menu", required: true},
+    orderOwnerRef: { type: mongoose.ObjectId, ref: "Cook", required: true },
+    orderBuyerRef: {type: mongoose.ObjectId, ref: "User", required: true},
+    quantity: {type: Number, required: true, default: 1, min: [1, "Invalid value for product quantity"], max: [6, "Invalid value for product quantity"] },
+    price: {type: Number, required: true}
   },
   {
-    timestamps: true,
+    timestamps: {
+      createdAt: "created_at",
+      updatedAt: "updated_at"
+    }
   }
 );
 
-module.exports = model("Chart", cartSchema);
+// chartSchema.methods.findcustomerById = (id) => {
+//   return this.orderBuyerRef;
+// };
+
+module.exports = model("Chart", chartSchema);
