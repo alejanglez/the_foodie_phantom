@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Cook = require("../models/Cook.model");
 const Menu = require("../models/Menu.model");
+
 const isLoggedMiddleware = (req, res, next) => {
   if (!req.session.currentUser) {
     return res.redirect("/login");
@@ -73,7 +74,7 @@ router.get("/explore/search", (req, res, next) => {
 //     );
 // });
 
-router.get("/cooks/:cookId/menus", (req, res) => {
+router.get("/cooks/:cookId/menus", isLoggedMiddleware, (req, res) => {
   const { cookId } = req.params;
   const { menuOwnerRef } = req.body;
   console.log(cookId);
