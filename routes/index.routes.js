@@ -29,7 +29,7 @@ const getAllCooks = (req, res) => {
   Cook.find()
     .then((cooksFromDB) => {
       console.log(cooksFromDB);
-      res.render("explore", { cooks: cooksFromDB });
+      res.render("explore", { cooks: cooksFromDB, scriptName: "explore" });
     })
     .catch((err) => console.log(`error while getting the cooks page ${err}`));
 };
@@ -79,7 +79,7 @@ router.get("/cooks/:cookId/menus", (req, res) => {
   console.log(cookId);
   console.log(menuOwnerRef);
 
-  Menu.find()
+  Menu.find({ menuOwnerRef: cookId })
     .populate("menuOwnerRef")
     .then((menus) => {
       console.log(menus);
@@ -89,7 +89,7 @@ router.get("/cooks/:cookId/menus", (req, res) => {
 });
 
 // router.get("/cooks/:cookId/menus", (req, res, next) => {
-//   const {cookId} = req.params  
+//   const {cookId} = req.params
 //   Menu.findById(cookId)
 //       .then((menus) => {
 //         console.log(menus);

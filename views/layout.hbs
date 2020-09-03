@@ -9,7 +9,7 @@
 
 <body>
   <nav class="navbar navbar-expand-sm navbar-light bg-light">
-    <a class="navbar-brand" href="/"><img class="logo-nav" src="./images/Frame2.png" width="80" height="80"
+    <a class="navbar-brand" href="/"><img class="logo-nav" src="/images/Frame2.png" width="80" height="80"
         alt="Logo"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,8 +43,6 @@
     {{{body}}}
   </div>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <script src="/javascripts/explore.js"></script>
-  <script src="/javascripts/script.js"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
     crossorigin="anonymous"></script>
@@ -54,6 +52,10 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
     integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
     crossorigin="anonymous"></script>
+  {{#if scriptName}}
+  <script src="/javascripts/{{scriptName}}.js"></script>
+  {{/if}}
+  <script src="/javascripts/script.js"></script>
   {{!-- {{#if javascript}}
   <script src="/javascripts/{{javascript}}.js"></script>
   {{/if}} --}}
