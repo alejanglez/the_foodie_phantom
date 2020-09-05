@@ -6,31 +6,38 @@ const Menu = require("../models/Menu.model");
 const User = require("../models/User.model");
 const Order = require("../models/Order.model");
 
-router.post("/order-create", (req, res) => {
-  const { quantity } = req.body;
-  // 'author' represents the ID of the user document
-  Order.create({ quantity })
-    .then((dbOrders) => {
-      return User.findByIdAndUpdate(userId, {
-        $push: { orders: dbOrders._id },
-      });
-    })
-    .then(() => res.redirect("order/orders-list"))
-    .catch((err) =>
-      console.log(`Err while creating the post in the DB: ${err}`)
-    );
-});
+router.get("/orders-success", (req, res) => res.render("order/orders-success"));
 
-router.get("/order-create", (req, res) => res.render("order/orders-list"));
+router.post("/order-create", (req, res) => {
+  console.log(req.body);
+
+  const { _id } = req.session.currentUser;
+  const { quantity } = req.body;
+
+  const ordersArr = [];
+
+  console.log(quantity);
+
+  if (quantity > 0) {
+    Order.create({
+      userId: _id,
+      orders: ordersArr,
+    })
+      .then(() => res.redirect("/orders-success"))
+      .catch((err) =>
+        console.log(`Err while creating the post in the DB: ${err}`)
+      );
+  }
+  res.render("cooks/details", { errorMessage: "Incorrect quantity" });
+});
 
 // ****************************************************************************************
 // GET route to display all the orders
 // ****************************************************************************************
 
-router.get("/orders-list", (req, res) => {
+router.get("/orders-success", (req, res) => {
   Order.find()
     .populate("menuId")
-    .populate("menuOwnerRef")
     .populate("userId")
     .populate({
       // we are populating author in the previously populated comments

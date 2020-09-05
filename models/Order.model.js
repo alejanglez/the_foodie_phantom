@@ -1,16 +1,16 @@
 const mongoose = require("mongoose");
 const { Schema, model } = mongoose;
 
-const chartSchema = new Schema(
+const orderSchema = new Schema(
   {
-    menuId: { type: mongoose.ObjectId, ref: "Menu", required: true },
-    menuOwnerRef: { type: mongoose.ObjectId, ref: "Cook", required: true },
-    // Array of products
+    userId: { type: mongoose.ObjectId, ref: "User", required: true },
+    
+    
     orders: [
       {
-        userId: {
+        menuId: {
           type: mongoose.ObjectId,
-          ref: "User",
+          ref: "Menu",
           required: true 
         },
         quantity: {
@@ -33,4 +33,4 @@ const chartSchema = new Schema(
 //   return this.orderBuyerRef;
 // };
 
-module.exports = model("Chart", chartSchema);
+module.exports = model("Order", orderSchema);

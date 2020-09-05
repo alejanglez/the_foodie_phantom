@@ -1,11 +1,8 @@
 const express = require("express");
 const router = express.Router();
-
 const Cook = require("../models/Cook.model");
 const Menu = require("../models/Menu.model");
-
 const fileUploader = require("../configs/cloudinary.config");
-
 // ****************************************************************************************
 // GET route to display the form to create a new movie
 // ****************************************************************************************
@@ -63,7 +60,6 @@ router.post("/:id/edit", fileUploader.single("image"), (req, res) => {
       console.log(`Error while updating a single movie: ${error}`)
     );
 });
-
 // ****************************************************************************************
 // GET route to display all the movies
 // ****************************************************************************************
@@ -79,7 +75,6 @@ router.get("/", (req, res) => {
       console.log(`Error while getting the movies from the DB: ${err}`)
     );
 });
-
 //delete
 router.post("/:id/delete", (req, res, next) => {
   const { id } = req.params;
@@ -90,5 +85,4 @@ router.post("/:id/delete", (req, res, next) => {
       next();
     });
 });
-
 module.exports = router;

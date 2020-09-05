@@ -19,7 +19,8 @@
     </div>
     <div class="order-options">
       <h5>order options:</h5>
-      <form action="/order-create" method="post">
+      <form action="/orders/order-create" method="post">
+        <input name="id" value={{_id}} hidden>
         <label for="quantity">Please fill how many dished do u want </label>
         <select class="quatity-input" name="quantity" required="true">
           <option value="1">0</option>
@@ -38,11 +39,11 @@
 {{/each}}
 
 <label for="Added total price">Total price</label>
-        €<input name="totalPrice" class="order-price-sum" type="number" readonly style="background-color:lightgray"
-          required="true">
-        <button type="submit" class='is-primary floated'>Buy</button>
-      </form>
-      <div class="goback">
-        <a href="/explore">
-          <button class='is-secondary floated'>Go back</button></a>
-      </div>
+€<input name="totalPrice" class="order-price-sum" type="number" readonly style="background-color:lightgray"
+  required="true">
+<button type="submit" class='is-primary floated'>Buy</button>
+</form>
+<div class="goback">
+  <a href="/explore">
+    <button class='is-secondary floated'>Go back</button></a>
+</div>
