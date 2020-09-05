@@ -6,29 +6,41 @@ const Menu = require("../models/Menu.model");
 const User = require("../models/User.model");
 const Order = require("../models/Order.model");
 
-router.get("/orders-success", (req, res) => res.render("order/orders-success"));
+// router.get("/orders-success", (req, res) => res.render("order/orders-success"));
 
 router.post("/order-create", (req, res) => {
   console.log(req.body);
 
   const { _id } = req.session.currentUser;
+
+  // for (var i=0, i<req.body.length, i++){ };
   const { quantity } = req.body;
+  const { id } = req.body;
 
   const ordersArr = [];
 
-  console.log(quantity);
-
-  if (quantity > 0) {
-    Order.create({
-      userId: _id,
-      orders: ordersArr,
-    })
-      .then(() => res.redirect("/orders-success"))
-      .catch((err) =>
-        console.log(`Err while creating the post in the DB: ${err}`)
-      );
+  for (let i = 0; i < quantity.length; i++) {
+    ordersArr.push({ menuId: id[i], quantity: quantity[i] });
   }
-  res.render("cooks/details", { errorMessage: "Incorrect quantity" });
+
+  // const ordersArr = [{ menuId: `${id}` }, { quantity: `${quantity}` }];
+
+  console.log(ordersArr);
+  console.log("QUANITTYY", quantity);
+  console.log("ALEJANDRo:", id);
+
+  if (!quantity.length) {
+    return res.render("cooks/details", { errorMessage: "Incorrect quantity" });
+  }
+
+  Order.create({
+    userId: _id,
+    orders: ordersArr,
+  })
+    .then(() => res.redirect("/orders/orders-success"))
+    .catch((err) =>
+      console.log(`Err while creating the post in the DB: ${err}`)
+    );
 });
 
 // ****************************************************************************************
@@ -37,19 +49,18 @@ router.post("/order-create", (req, res) => {
 
 router.get("/orders-success", (req, res) => {
   Order.find()
-    .populate("menuId")
     .populate("userId")
-    .populate({
-      // we are populating author in the previously populated comments
-      path: "cookId2",
-      populate: {
-        path: "menuOwnerRef",
-        model: "Cook",
-      },
-    })
+    .populate({ path: "orders", populate: { path: "menuId" } })
+
+    // we are populating author in the previously populated comments
+    // path: "cookId2",
+    // populate: {
+    //   path: "menuOwnerRef",
+    //   model: "Cook",
+
     .then((dbOrders) => {
-      console.log(dbOrders);
-      res.render("/orders-list", { orders: dbOrders });
+      console.log("ordenes:", dbOrders[0].orders);
+      res.render("order/orders-success", { orders: dbOrders });
     })
     .catch((err) =>
       console.log(`Err while getting the posts from the DB: ${err}`)
@@ -61,17 +72,17 @@ router.get("/orders-success", (req, res) => {
 // shows how to deep populate (populate the populated field)
 // ****************************************************************************************
 
-router.get("/:orderId", (req, res) => {
+router.get("/orders-success/:orderId", (req, res) => {
   const { orderId } = req.params;
 
-  Order.findById(oderId)
-    .populate("menuId")
-    .populate("cookId2")
+  Order.findById(orderId)
     .populate("userId")
-    .then((foundOrder) => res.render("orders/details", foundOrder))
+    .populate({ path: "orders", populate: { path: "menuId" } })
+    .then((foundOrder) => res.render("order/orders-details", foundOrder))
     .catch((err) =>
       console.log(`Err while getting a single post from the  DB: ${err}`)
     );
+  console.log("FOUND ORDER:", foundOrder);
 });
 
 module.exports = router;

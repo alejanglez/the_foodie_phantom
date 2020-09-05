@@ -2,8 +2,9 @@
 
 <ul>
   {{#each orders}}
-    <li> {{ this.quantity }} by {{this.userId.username}}  </li>
+  <li> Order number {{ this._id }} by {{this.userId.username}} created at {{this.created_at}}
+    <a href="/orders-success/{{ _id }}" class="btn btn-primary">Go to de ORDER!</a>
+  </li>
+
   {{/each}}
 </ul>
-
-
