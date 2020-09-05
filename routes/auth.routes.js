@@ -101,7 +101,7 @@ router.post("/login", (req, res, next) => {
         //******* SAVE THE USER IN THE SESSION ********//
         req.session.currentUser = user;
         console.log("¨REDIRECT");
-        res.redirect("/userProfile");
+        res.redirect("/explore");
       } else {
         res.render("auth/login", { errorMessage: "Incorrect password." });
       }

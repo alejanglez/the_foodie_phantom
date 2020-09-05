@@ -49,6 +49,7 @@ app.use("/", authRouter);
 app.use("/", authCookRouter);
 
 app.use("/menus", require("./routes/menu.routes"));
+app.use("/orders", require("./routes/order.routes"));
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => next(createError(404)));
