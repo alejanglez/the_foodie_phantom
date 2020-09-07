@@ -8,11 +8,11 @@
       <div class="card-body">
         <h5 class="card-title">{{title}}</h5>
         <p class="card-text">{{description}}</p>
-        <p class="card-text">{{price}}</p>
+        <p class="card-text">{{price}} €</p>
         <a href="/menus/{{id}}/edit" class="btn btn-primary">Edit</a>
-    <form action="/menus/{{id}}/delete" method="post"> 
-        <button class="btn btn-primary">Delete</button>
-    </form>
+        <form action="/menus/{{id}}/delete" method="post">
+          <button class="btn btn-primary">Delete</button>
+        </form>
       </div>
     </div>
   </div>

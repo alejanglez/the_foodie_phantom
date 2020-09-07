@@ -50,13 +50,8 @@ router.post("/order-create", (req, res) => {
 router.get("/orders-success", (req, res) => {
   Order.find()
     .populate("userId")
+    .populate("menuOwnerRef")
     .populate({ path: "orders", populate: { path: "menuId" } })
-
-    // we are populating author in the previously populated comments
-    // path: "cookId2",
-    // populate: {
-    //   path: "menuOwnerRef",
-    //   model: "Cook",
 
     .then((dbOrders) => {
       console.log("ordenes:", dbOrders[0].orders);
@@ -68,17 +63,19 @@ router.get("/orders-success", (req, res) => {
 });
 
 // ****************************************************************************************
-// GET route for displaying the post details page
-// shows how to deep populate (populate the populated field)
+// GET route for displaying the order details page
+
 // ****************************************************************************************
 
 router.get("/orders-success/:orderId", (req, res) => {
   const { orderId } = req.params;
-
+  console.log(orderId);
   Order.findById(orderId)
     .populate("userId")
     .populate({ path: "orders", populate: { path: "menuId" } })
-    .then((foundOrder) => res.render("order/orders-details", foundOrder))
+    .then((foundOrder) => {
+      res.render("order/orders-details", { orders: foundOrder });
+    })
     .catch((err) =>
       console.log(`Err while getting a single post from the  DB: ${err}`)
     );

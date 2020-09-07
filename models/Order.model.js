@@ -4,14 +4,13 @@ const { Schema, model } = mongoose;
 const orderSchema = new Schema(
   {
     userId: { type: mongoose.ObjectId, ref: "User", required: true },
-    
-    
+
     orders: [
       {
         menuId: {
           type: mongoose.ObjectId,
           ref: "Menu",
-          required: true 
+          required: true,
         },
         quantity: {
           type: Number,

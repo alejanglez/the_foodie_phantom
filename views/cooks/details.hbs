@@ -11,7 +11,7 @@
     <div class="card-body">
       <h5 class="card-title">{{title}}</h5>
       <p class="card-text">{{description}}</p>
-      <p class="card-text">{{price}}</p>
+      <p class="card-text">{{price}} € </p>
       {{!-- <a href="/menus/{{id}}/edit" class="btn btn-primary">Edit</a>
     <form action="/menus/{{id}}/delete" method="post"> 
         <button class="btn btn-primary">Delete</button>
@@ -38,9 +38,9 @@
 <p>There are no menus yet!</p>
 {{/each}}
 
-<label for="Added total price">Total price</label>
+{{!-- <label for="Added total price">Total price</label>
 €<input name="totalPrice" class="order-price-sum" type="number" readonly style="background-color:lightgray"
-  required="true">
+  required="true"> --}}
 <button type="submit" class='is-primary floated'>Buy</button>
 </form>
 <div class="goback">

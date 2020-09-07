@@ -1,21 +1,8 @@
-<h1>Menus</h1>
+<h1>Order</h1>
 <hr>
 <div class="row">
-
-    <div class="col-md-4 mb-5">
-        <div class="card" style="width: 18rem;">
-            <img src="{{imageUrl}}" class="card-img-top" alt="{{title}}">
-            <div class="card-body">
-                <h5 class="card-title">{{title}}</h5>
-                <p class="card-text">{{description}}</p>
-                <p class="card-text">{{price}}</p>
-                <a href="/menus/{{id}}/edit" class="btn btn-primary">Edit</a>
-                <form action="/menus/{{id}}/delete" method="post">
-                    <button class="btn btn-primary">Delete</button>
-                </form>
-            </div>
-        </div>
-    </div>
-
+    <li> Order number {{ this._id }} by {{this.userId.username}} created at {{this.created_at}}
+        <a href="/orders-success" class="btn btn-primary">Go to de ORDER!</a>
+    </li>
     <hr />
 </div>
