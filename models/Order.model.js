@@ -4,7 +4,7 @@ const { Schema, model } = mongoose;
 const orderSchema = new Schema(
   {
     userId: { type: mongoose.ObjectId, ref: "User", required: true },
-
+    // menuOwnerRef: { type: mongoose.ObjectId, ref: "Cook", required: true },
     orders: [
       {
         menuId: {
@@ -14,8 +14,7 @@ const orderSchema = new Schema(
         },
         quantity: {
           type: Number,
-          default: 1,
-          min: [1, "Invalid value for product quantity"],
+          default: 0,
         },
       },
     ],

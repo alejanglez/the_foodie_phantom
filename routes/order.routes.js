@@ -20,7 +20,9 @@ router.post("/order-create", (req, res) => {
   const ordersArr = [];
 
   for (let i = 0; i < quantity.length; i++) {
-    ordersArr.push({ menuId: id[i], quantity: quantity[i] });
+    if (quantity[i] > 0) {
+      ordersArr.push({ menuId: id[i], quantity: quantity[i] });
+    }
   }
 
   // const ordersArr = [{ menuId: `${id}` }, { quantity: `${quantity}` }];
@@ -49,8 +51,8 @@ router.post("/order-create", (req, res) => {
 
 router.get("/orders-success", (req, res) => {
   Order.find()
-    .populate("userId")
     .populate("menuOwnerRef")
+    .populate("userId")
     .populate({ path: "orders", populate: { path: "menuId" } })
 
     .then((dbOrders) => {
@@ -73,13 +75,13 @@ router.get("/orders-success/:orderId", (req, res) => {
   Order.findById(orderId)
     .populate("userId")
     .populate({ path: "orders", populate: { path: "menuId" } })
+    .populate("menuOwnerRef")
     .then((foundOrder) => {
-      res.render("order/orders-details", { orders: foundOrder });
+      res.render("order/orders-details", { orders: foundOrder.orders });
     })
     .catch((err) =>
       console.log(`Err while getting a single post from the  DB: ${err}`)
     );
-  console.log("FOUND ORDER:", foundOrder);
 });
 
 module.exports = router;

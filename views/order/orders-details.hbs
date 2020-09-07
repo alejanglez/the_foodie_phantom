@@ -1,8 +1,13 @@
 <h1>Order</h1>
 <hr>
-<div class="row">
-    <li> Order number {{ this._id }} by {{this.userId.username}} created at {{this.created_at}}
-        <a href="/orders-success" class="btn btn-primary">Go to de ORDER!</a>
-    </li>
-    <hr />
-</div>
+{{#each orders}}
+<li> Sub-order number {{ this._id }}
+    <div class="card" style="width: 18rem;">
+        <img src="{{this.menuId.imageUrl}}" class="card-img-top" alt="{{this.menuId.title}}">
+        <div class="card-body">
+            <h5 class="card-title">{{this.menuId.title}}</h5>
+            <p class="card-text">{{this.menuId.description}}</p>
+            <p class="card-text"> {{this.quantity}} UD x {{this.menuId.price}}€</p>
+            <p class="card-text">{{this.menuId.menuOwnerRef}}</p>
+</li>
+{{/each}}

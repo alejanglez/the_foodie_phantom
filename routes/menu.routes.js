@@ -47,14 +47,18 @@ router.get("/:id/edit", (req, res) => {
 router.post("/:id/edit", fileUploader.single("image"), (req, res) => {
   console.log("caca2");
   const { id } = req.params;
-  const { title, description } = req.body;
+  const { title, description, price } = req.body;
   let imageUrl;
   if (req.file) {
     imageUrl = req.file.path;
   } else {
     imageUrl = req.body.existingImage;
   }
-  Menu.findByIdAndUpdate(id, { title, description, imageUrl }, { new: true })
+  Menu.findByIdAndUpdate(
+    id,
+    { title, description, price, imageUrl },
+    { new: true }
+  )
     .then(() => res.redirect(`/menus`))
     .catch((error) =>
       console.log(`Error while updating a single movie: ${error}`)

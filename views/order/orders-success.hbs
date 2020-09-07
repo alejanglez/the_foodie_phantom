@@ -3,7 +3,7 @@
 <ul>
   {{#each orders}}
   <li> Order number {{ this._id }} by {{this.userId.username}} created at {{this.created_at}}
-    <a href="/orders-success/{{ _id }}" class="btn btn-primary">Go to de ORDER!</a>
+    <a href="/orders/orders-success/{{ _id }}" class="btn btn-primary">Go to de ORDER!</a>
   </li>
 
   {{/each}}
