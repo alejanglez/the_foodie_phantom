@@ -29,6 +29,7 @@ router.post("/signupCook", (req, res, next) => {
     certification,
     foodhHandlingNumber,
     kitchenNumber,
+    deliveryTime,
     status,
   } = req.body;
 
@@ -72,6 +73,7 @@ router.post("/signupCook", (req, res, next) => {
         certification,
         foodhHandlingNumber,
         kitchenNumber,
+        deliveryTime,
         status,
       });
     })
@@ -121,7 +123,7 @@ router.post("/loginCook", (req, res, next) => {
         //******* SAVE THE USER IN THE SESSION ********//
         req.session.currentCook = cook;
         console.log("¨REDIRECT");
-        res.redirect("/cookProfile");
+        res.redirect("/private");
       } else {
         res.render("auth/login", { errorMessage: "Incorrect password." });
       }

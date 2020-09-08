@@ -21,7 +21,11 @@ router.post("/order-create", (req, res) => {
 
   for (let i = 0; i < quantity.length; i++) {
     if (quantity[i] > 0) {
-      ordersArr.push({ menuId: id[i], quantity: quantity[i] });
+      if (Array.isArray(ordersArr)) {
+        ordersArr.push({ menuId: id[i], quantity: quantity[i] });
+      } else {
+        ordersArr.push({ menuId: id, quantity: quantity });
+      }
     }
   }
 
@@ -68,17 +72,56 @@ router.get("/orders-success", (req, res) => {
 // GET route for displaying the order details page
 
 // ****************************************************************************************
-
 router.get("/orders-success/:orderId", (req, res) => {
   const { orderId } = req.params;
   console.log(orderId);
+
   Order.findById(orderId)
     .populate("userId")
-    .populate({ path: "orders", populate: { path: "menuId" } })
-    .populate("menuOwnerRef")
+    .populate({
+      path: "orders",
+      populate: { path: "menuId", populate: { path: "menuOwnerRef" } },
+    })
     .then((foundOrder) => {
       res.render("order/orders-details", { orders: foundOrder.orders });
     })
+
+    .catch((err) =>
+      console.log(`Err while getting a single post from the  DB: ${err}`)
+    );
+});
+
+router.get("/orders-confirmed", (req, res) => {
+  const { cookid } = req.session.currentCook;
+
+  Order.find({ menuOwnerRef: cookid })
+    .populate("menuOwnerRef")
+    .populate("userId")
+    .populate({ path: "orders", populate: { path: "menuId" } })
+
+    .then((dbOrders) => {
+      console.log("ordenes:", dbOrders[0].orders);
+      res.render("order/orders-confirmed", { orders: dbOrders });
+    })
+    .catch((err) =>
+      console.log(`Err while getting the posts from the DB: ${err}`)
+    );
+});
+
+router.get("/orders-confirmed/:orderId", (req, res) => {
+  const { orderId } = req.params;
+  console.log(orderId);
+
+  Order.findById(orderId)
+    .populate("userId")
+    .populate({
+      path: "orders",
+      populate: { path: "menuId", populate: { path: "menuOwnerRef" } },
+    })
+    .then((foundOrder) => {
+      res.render("order/orders-details2", { orders: foundOrder.orders });
+    })
+
     .catch((err) =>
       console.log(`Err while getting a single post from the  DB: ${err}`)
     );

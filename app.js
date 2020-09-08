@@ -37,8 +37,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // default value for title local
-app.locals.title = "The Foodie Phantom";
-app.locals.message = "Don't envy your neighbor's food, ask for Them!!";
+app.locals.title = "The Phantom Cook";
+app.locals.message = "Don't envy your neighbor's food, ask for it!!";
 
 const index = require("./routes/index.routes");
 const authRouter = require("./routes/auth.routes");

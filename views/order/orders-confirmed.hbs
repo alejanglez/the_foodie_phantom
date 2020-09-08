@@ -1,9 +1,9 @@
-<h2>Orders list</h2>
+<h2>Posts</h2>
 
 <ul>
   {{#each orders}}
   <li> Order number {{ this._id }} by {{this.userId.username}} created at {{this.created_at}}
-    <a href="/orders/orders-success/{{ _id }}" class="btn btn-primary">Go to de ORDER!</a>
+    <a href="/orders/orders-confirmed/{{ _id }}" class="btn btn-primary">Go to de ORDER!</a>
   </li>
 
   {{/each}}

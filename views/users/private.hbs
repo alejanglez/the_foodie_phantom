@@ -1,9 +1,11 @@
 {{#if cookInSession}}
-<h1>This page is private.</h1>
-<img src="https://media.giphy.com/media/xT8qAY7e9If38xkrIY/giphy.gif" alt="">
-<li class="nav-item">
-    <a class="nav-link" href="/menu">Menu</a>
-</li>
+<h2>Welcome, {{ cookInSession.cookname }}!</h2>
+<p>This is your profile page my friend!</p>
+
+
+<a class="nav-link" href="/menu">Menus</a>
+<a class="nav-link" href="/orders/orders-confirmed">Orders list</a>
+
 {{else}}
 You don't have access!
 {{/if}}

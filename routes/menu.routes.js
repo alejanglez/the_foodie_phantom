@@ -4,7 +4,7 @@ const Cook = require("../models/Cook.model");
 const Menu = require("../models/Menu.model");
 const fileUploader = require("../configs/cloudinary.config");
 // ****************************************************************************************
-// GET route to display the form to create a new movie
+// GET route to display the form to create a new menu
 // ****************************************************************************************
 router.get("/create", (req, res) => res.render("menu/menu-create"));
 // ****************************************************************************************
@@ -42,7 +42,7 @@ router.get("/:id/edit", (req, res) => {
     );
 });
 // ****************************************************************************************
-// POST route to save changes after updates in a specific movie
+// POST route to save changes after updates in a specific menu
 // ****************************************************************************************
 router.post("/:id/edit", fileUploader.single("image"), (req, res) => {
   console.log("caca2");
@@ -65,7 +65,7 @@ router.post("/:id/edit", fileUploader.single("image"), (req, res) => {
     );
 });
 // ****************************************************************************************
-// GET route to display all the movies
+// GET route to display all the menus
 // ****************************************************************************************
 router.get("/", (req, res) => {
   Menu.find({ menuOwnerRef: req.session.currentCook._id })
