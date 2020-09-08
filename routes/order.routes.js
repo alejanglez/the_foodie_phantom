@@ -9,7 +9,7 @@ const Order = require("../models/Order.model");
 // router.get("/orders-success", (req, res) => res.render("order/orders-success"));
 
 router.post("/order-create", (req, res) => {
-  console.log(req.body);
+  console.log("CREATED ORDER ", req.body);
 
   const { _id } = req.session.currentUser;
 
@@ -19,14 +19,15 @@ router.post("/order-create", (req, res) => {
 
   const ordersArr = [];
 
-  for (let i = 0; i < quantity.length; i++) {
-    if (quantity[i] > 0) {
-      if (Array.isArray(ordersArr)) {
+  if (Array.isArray(id) && Array.isArray(quantity)) {
+    for (let i = 0; i < quantity.length; i++) {
+      if (quantity[i] > 0) {
+        // if (Array.isArray(ordersArr)) {
         ordersArr.push({ menuId: id[i], quantity: quantity[i] });
-      } else {
-        ordersArr.push({ menuId: id, quantity: quantity });
       }
     }
+  } else {
+    ordersArr.push({ menuId: id, quantity: quantity });
   }
 
   // const ordersArr = [{ menuId: `${id}` }, { quantity: `${quantity}` }];

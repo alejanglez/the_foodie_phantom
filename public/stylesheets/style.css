@@ -22,7 +22,7 @@
 }
 
 body {
-  padding: 50px;
+  padding: 20px;
   font: 14px "Britanica-Regular", "Indie Flower", Helvetica, Arial, sans-serif;
   font-weight: bold;
 }
@@ -54,3 +54,23 @@ button.close {
 }
 
 /*SIGNUP*/
+
+.footer {
+  text-align: center;
+  background-color: #f7f7f7;
+  width: 100%;
+  height: 50%;
+}
+
+video {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+#explore-link {
+  padding-top: 50;
+  text-align: center;
+  font-size: 30;
+}

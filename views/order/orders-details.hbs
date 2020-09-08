@@ -1,5 +1,6 @@
 <h1>Your Order!!</h1>
 <h2> The total price is <span id="total"> </span> €</h2>
+<h5> The Phantom Fee for each order is <span id="fee"></span> € </h5>
 <hr>
 {{#each orders}}
 
@@ -29,6 +30,7 @@
     const calcSubtotal = () => {
         let subtotal = 0;
         let totalCost = 0;
+        let fee = 0.60;
         const elements = document.querySelectorAll(".product");
         elements.forEach((ele) => {
             let qty = Number(ele.getElementsByClassName("quantity")[0].innerText);
@@ -40,8 +42,9 @@
             ele.getElementsByClassName("subtotal")[0].innerText = `€ ${subtotal.toFixed(
                 2
             )} `;
-            totalCost += subtotal;
+            totalCost += subtotal + fee;
         });
         document.getElementById("total").innerText = totalCost.toFixed(2);
+        document.getElementById("fee").innerText = fee;
     };
 </script>

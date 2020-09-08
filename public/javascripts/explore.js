@@ -24,7 +24,14 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
         result.forEach((obj) => {
-          const { cookname, motivation, certification, region, status, _id } = obj;
+          const {
+            cookname,
+            motivation,
+            certification,
+            region,
+            status,
+            _id,
+          } = obj;
 
           item += `
           <div class="card card-body">
