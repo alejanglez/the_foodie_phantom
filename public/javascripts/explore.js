@@ -30,17 +30,19 @@ document.addEventListener("DOMContentLoaded", () => {
             certification,
             region,
             status,
+            deliveryTime,
             _id,
           } = obj;
 
           item += `
           <div class="card card-body">
-          <h4>name: ${cookname}</h4>
-          <p>location: ${motivation}</p>
-          <p>description: ${certification}</p>
-          <p>region: ${region}</p>
-          <p>status: ${status}</p>
-          <p><a href="/cooks/${_id}/menus" class="btn btn-primary">COMPLETE MENU</a>
+          <h4>Name: ${cookname}</h4>
+          <p>Location: ${motivation}</p>
+          <p>Description: ${certification}</p>
+          <p>Region: ${region}</p>
+          <p>Status: ${status}</p>
+          <p>Delivery time: ${deliveryTime} hours </p>
+          <p><a href="/cooks/${_id}/menus" class="btn btn-warning">COMPLETE MENU</a>
         </div>
         <hr>`;
         });
