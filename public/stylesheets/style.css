@@ -4,27 +4,39 @@
   box-sizing: border-box;
 }
 @font-face {
-  /*  
   font-family: "Britanica-Black";
   src: url("/fonts/Britanica_WOFF/WOFF/BritanicaVariable-Black.woff");
+  font-style: black;
+}
+@font-face {
   font-family: "Britanica-Bold";
   src: url("/fonts/Britanica_WOFF/WOFF/BritanicaVariable-Bold.woff");
-  font-family: "Britanica-ExtraBold";
+}
+@font-face {
+  font-family: "Britanica-Extrabold";
   src: url("/fonts/Britanica_WOFF/WOFF/BritanicaVariable-ExtraBold.woff");
+}
+@font-face {
   font-family: "Britanica-Heavy";
   src: url("/fonts/Britanica_WOFF/WOFF/BritanicaVariable-Heavy.woff");
+}
+@font-face {
   font-family: "Britanica-Light";
   src: url("/fonts/Britanica_WOFF/WOFF/BritanicaVariable-Light.woff");
+}
+@font-face {
   font-family: "Britanica-Thin";
-  src: url("/fonts/Britanica_WOFF/WOFF/BritanicaVariable-Thin.woff"); */
+  src: url("/fonts/Britanica_WOFF/WOFF/BritanicaVariable-Thin.woff");
+}
+@font-face {
   font-family: "Britanica-Regular";
   src: url("/fonts/Britanica_WOFF/WOFF/BritanicaVariable-Regular.woff");
 }
 
 body {
   padding-top: 80px;
-  font: 15px "Britanica-Regular", "Indie Flower", Helvetica, Arial, sans-serif;
-  font-weight: bold;
+  font: 15px "Britanica-Bold", "Indie Flower", Helvetica, Arial, sans-serif;
+  font-style: thin;
   width: 100%;
 }
 
@@ -179,4 +191,8 @@ button {
 
 .webheight {
   min-height: 50%;
+}
+
+p {
+  font-size: large;
 }
