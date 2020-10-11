@@ -145,6 +145,10 @@ dayOrdered: Number, required: true,
 Quantity: Number, required: true,
 })
 
+## Deployment - MVP
+
+https://thephamtomcook.herokuapp.com/
+
 ## Links
 
 [Trello Link](https://trello.com/b/Hu1J0K0k/foodie-phantom)
